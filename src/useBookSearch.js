@@ -23,13 +23,15 @@ const useBookSearch = (query, pageNumber) => {
             params: { q: query, page: pageNumber }, 
             cancelToken: new axios.CancelToken(c => cancel = c)
         }).then( res => {
+            console.log(res.data)
             setBooks(prevBooks => {
-                return [...new Set([...prevBooks, ...res.data.docs.map(b => b.title)])];
+                return [...new Set([...prevBooks, ...res.data.docs.map(b => { return {title: b.title, author: b.author_name, year: b.first_publish_year} })])];
             })
             setHasMore(res.data.docs.length>0)
             setLoading(false)
             console.log(res.data);
         }).catch(e => {
+            console.log(e);
             if (axios.isCancel(e)) return;
             setError(true)
         })

@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 10 auto;
+  font-family: "Quicksand";
+  color: #333;
+}
+
+.book {
+    border: 1px solid #cecece;
+    padding: 10px 16px;
+    margin-bottom: 5px;
+}

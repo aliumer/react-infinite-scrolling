@@ -1,8 +1,9 @@
 import React, { useState, useRef, useCallback } from "react";
 import useBookSearch from "./useBookSearch";
+import './index.css';
 
 function App() {
-  const [query, setQuery] = useState(null);
+  const [query, setQuery] = useState('');
   const [pageNumber, setPageNumber] = useState(0);
 
   const {books, hasMore, loading, error} = useBookSearch(query, pageNumber);
@@ -34,9 +35,15 @@ function App() {
       {
         books.map((book, index) => {
           if (books.length === index + 1) {
-            return <div ref={lastBookElementRef} key={book}>{book}</div>
+            return <div className="book" ref={lastBookElementRef} key={book.title}>
+              <strong>{book.title}</strong><br />
+              by <span>{book.author} publish in {book.year}</span>
+            </div>
           } else {
-            return <div key={book}>{book}</div>
+            return <div className="book" key={book.title}>
+              <strong>{book.title}</strong><br />
+              by <span>{book.author} publish in {book.year}</span>
+            </div>
           }
         })
       }
